@@ -4,7 +4,7 @@ export default [
     name: 'login',
     component: () => import('views/user/Login.vue'),
     meta: {
-      title: '登录'
+      title: '用户注册'
     }
   },
   {
@@ -12,7 +12,7 @@ export default [
     name: 'informationMaintenance',
     component: () => import('views/user/InformationMaintenance.vue'),
     meta: {
-      title: '注册'
+      title: '用户信息维护'
     }
   }
 ]

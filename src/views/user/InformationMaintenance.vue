@@ -4,13 +4,13 @@
       <p class="title">用户信息维护</p>
     </div>
     <div class="content">
-      <van-form ref="myForm" @submit="onSubmit">
+      <van-form ref="myForm" class="myForm" @submit="onSubmit">
         <div :class="[updateType === 0 ? 'pointerEvents' : '']">
           <div class="title-1-0">基础信息</div>
           <van-field
             v-model="user.name"
             name="姓　　名"
-            label="姓　　名"
+            label="姓　　名:"
             placeholder="姓　　名"
             :rules="[{ required: true, message: '请填写姓名' }]"
           />
@@ -18,7 +18,7 @@
           <van-field
             v-model="user.phone"
             required
-            label="手机号"
+            label="手机号:"
             placeholder="请输入手机号"
             :rules="[{ required: true, message: '请填写手机号' }]"
           />
@@ -27,7 +27,7 @@
           <van-field
             v-model="user.professional"
             name="所属专业"
-            label="所属专业"
+            label="所属专业:"
             placeholder="所属专业"
             :rules="[{ required: true, message: '请填写所属专业' }]"
           />
@@ -35,7 +35,7 @@
           <van-field
             v-model="user.branch"
             name="分公司类别"
-            label="分公司类别"
+            label="分公司类别:"
             placeholder="分公司类别"
             :rules="[{ required: true, message: '请填写分公司类别' }]"
           />
@@ -43,7 +43,7 @@
           <van-field
             v-model="user.regionalCategory"
             name="区域类别"
-            label="区域类别"
+            label="区域类别:"
             placeholder="区域类别"
             :rules="[{ required: true, message: '请填写区域类别' }]"
           />
@@ -51,69 +51,74 @@
           <van-field
             v-model="user.theGridCategory"
             name="网格类别"
-            label="网格类别"
+            label="网格类别:"
             placeholder="网格类别"
             :rules="[{ required: true, message: '请填写网格类别' }]"
           />
         </div>
-     
 
-      <div class="button-wrap">
-        <div class="flexBox" v-if="updateType == 0">
-          <div class="flex1 marginRight20">
+        <div class="button-wrap">
+          <div class="flexBox" v-if="updateType == 0">
+            <div class="flex1 marginRight20">
+              <!-- 默认第一个按钮提交表单 -->
+              <van-button
+                size="large"
+                v-show="false"
+                native-type="button"
+                @click="saveUpdateType"
+              ></van-button>
 
-            <!-- 默认第一个按钮提交表单 -->
-            <van-button size="large" v-show="false" native-type="button" @click="saveUpdateType"  
-              ></van-button
-            >
-
-            <van-button
-              size="large"
-              native-type="button"
-              @click="saveUpdateType"
-              type="info"
-              >修改信息</van-button
-            >
+              <van-button
+                size="large"
+                native-type="button"
+                @click="saveUpdateType"
+                type="info"
+                >修改信息</van-button
+              >
+            </div>
+            <div class="flex1">
+              <van-button
+                size="large"
+                native-type="button"
+                :loading="logoutUserLoading"
+                @click="logoutUser"
+                type="error"
+                >注销用户</van-button
+              >
+            </div>
           </div>
-          <div class="flex1">
-            <van-button
-              size="large"
-              native-type="button"
-              :loading="logoutUserLoading"
-              @click="logoutUser"
-              type="error"
-              >注销用户</van-button
-            >
+
+          <div class="flexBox" v-if="updateType == 1">
+            <div class="flex1 marginRight20">
+              <van-button
+                size="large"
+                native-type="submit"
+                :loading="loading"
+                @click="saveUpdate"
+                type="error"
+                >确认修改</van-button
+              >
+            </div>
+            <div class="flex1">
+              <van-button
+                size="large"
+                native-type="button"
+                @click="noUpdateType"
+                type="info"
+                >返回</van-button
+              >
+            </div>
           </div>
         </div>
-
-        <div class="flexBox" v-if="updateType == 1">
-          <div class="flex1 marginRight20">
-            <van-button
-              size="large"
-              native-type="submit"
-              :loading="loading"
-              @click="saveUpdate" 
-              type="error"
-              >确认修改</van-button
-            >
-          </div>
-          <div class="flex1">
-            <van-button size="large" native-type="button" @click="noUpdateType" type="info"
-              >返回</van-button
-            >
-          </div>
-        </div>
-      </div>
-
-       </van-form>
-
+      </van-form>
     </div>
   </div>
 </template>
 <script>
+//信息维护
 import service from "@/utils/request";
 import lodash from "lodash";
+import { Toast } from "vant";
 export default {
   name: "InformationMaintenance",
   data() {
@@ -125,13 +130,13 @@ export default {
         branch: "深圳分公司",
         regionalCategory: "深圳铁塔维护项目部",
         theGridCategory: "新桥网格",
-        sms: "123456"
+        sms: "123456",
       },
       cobyUser: null,
       //0不允许修改
       updateType: 0,
       loading: false,
-      logoutUserLoading: false
+      logoutUserLoading: false,
     };
   },
   methods: {
@@ -149,9 +154,10 @@ export default {
       this.$dialog
         .confirm({
           title: "提示",
-          message: "是否注销用户"
+          message: "是否注销用户",
         })
         .then(() => {
+          Toast("您的账户已注销！");
           this.$store.dispatch("user/logout");
         })
         .catch(() => {
@@ -159,35 +165,27 @@ export default {
         });
     },
     //确定修改
-    saveUpdate() {
+    async saveUpdate() {
       // this.$refs.myForm.validate();
-      this.$refs.myForm.validate()
+      this.$refs.myForm.validate();
     },
-    onSubmit() {
-      alert("111");
-      console.log("1111");
-    }
-    // async onSubmit(value) {
-    //   this.loading = true;
-    //   const item = {
-    //     usernameOrEmailAddress: this.usernameOrEmailAddress,
-    //     password: this.password
-    //   };
-    //   //登录成功后 请求用户角色
-    //   service.post("/user/login", item).then(
-    //     data => {
-    //       setToken(data.message);
-    //       // this.$store.dispatch("user/setToken", data.message);
-    //       this.loading = false;
-    //       this.$router.push("/informationMaintenance");
-    //     },
-    //     err => {
-    //       this.loading = false;
-    //     }
-    //   );
-    // }
+    async onSubmit(value) {
+      this.loading = true;
+      //登录成功后 请求用户角色
+      // service.post("/user/login", item).then(
+      //   data => {
+      //     setToken(data.message);
+      //     // this.$store.dispatch("user/setToken", data.message);
+      //     this.loading = false;
+      //     this.$router.push("/informationMaintenance");
+      //   },
+      //   err => {
+      //     this.loading = false;
+      //   }
+      // );
+    },
   },
-  computed: {}
+  computed: {},
 };
 </script>
 <style lang="scss" scoped></style>
