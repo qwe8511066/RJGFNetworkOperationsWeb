@@ -1,0 +1,404 @@
+$theme-color: #01a7f0;
+/** 通用style  **/
+@for $i from 12 through 40 {
+  .font#{$i}{font-size:1px*$i}
+}
+
+@for $i from 1 through 10{
+  .width#{$i}{width: 10%*$i;display: block}
+  .weight#{$i}{font-weight:100*$i} 
+}
+
+@for $i from 5 through 30 {
+  .margin#{$i}{margin: 1px * $i}
+  .padding#{$i}{padding: 1px *$i}
+  .marginLeft#{$i}{margin-left: 1px * $i}
+  .marginRight#{$i}{margin-right: 1px * $i}
+  .marginTop#{$i}{margin-top: 1px * $i}
+  .marginBottom#{$i}{margin-bottom: 1px * $i}
+  .paddingLeft#{$i}{padding-left:1px*$i }
+  .paddingTop#{$i}{padding-top:1px*$i }
+  .paddingRigth#{$i}{padding-right:1px*$i }
+  .paddingBonttom#{$i}{padding-bottom:1px*$i }
+} 
+
+@for $i from 1 through 3 {
+  .limit#{$i}{overflow:hidden;text-overflow:ellipsis;display:block;-webkit-line-clamp:$i;-webkit-box-orient:vertical;white-space: nowrap;}
+}
+
+//背景颜色列表
+$bgList: ('f6f8fb':#f6f8fb,'f7f9ff':#f7f9ff,'fff': #fff, 'eff3f5':#eff3f5, 'f2f2f2': #f2f2f2, 'fe5f34': #fe5f34, '56b771': #56b771, 'd0effc': #d0effc, 'fddcd4': #fddcd4,'999':#999,'ccc':#ccc);
+@each $key, $value in $bgList { 
+  .bg#{$key}{background:$value}
+} 
+
+//颜色列表
+$colorList:('9C9C9C':#9C9C9C,'1D8DFF':#1D8DFF,'25C281':#25C281,'383838':#383838,'171717':#171717,'ff5959':#ff5959,'365d98':#365d98,'3e4a59':#3e4a59,'6a81ae':#6a81ae, '2bcaf6':#2bcaf6,'56b771': #56b771,'e28c41':#e28c41,'709ead':#709ead,'36e2d4':#36e2d4,'000':#000,'fff':#fff,'ff7f00':#ff7f00,'0099d9':#0099d9);
+@each $key,$value in $colorList{ 
+  .color#{$key}{color:$value!important};
+} 
+
+
+.flexMain {
+  -webkit-box-flex: 1;
+  height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+.height100{
+  min-height: 100vh;
+  background: #f1f1f1;
+}
+
+.flexBox {
+  display: -webkit-box;
+}
+.myGrid{
+  margin-top: 10px;
+}
+
+.flex1 {
+  -webkit-box-flex: 1;
+  display: block;
+  width: 100%
+}
+
+.flexContent {
+  -webkit-box-pack: center;
+  -webkit-box-align: center;
+  display: -webkit-box;
+}
+
+.flexLeftContent {
+  -webkit-box-pack: initial;
+  -webkit-box-align: center;
+  display: -webkit-box;
+}
+
+.flexRightContent {
+  -webkit-box-pack: initial;
+  -webkit-box-align: center;
+  display: -webkit-box;
+}
+.flexEnd{
+  -webkit-box-pack: initial;
+  -webkit-box-align: end;
+  display: -webkit-box;
+}
+
+.flexCloumn {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+}
+
+.textCenter {
+  text-align: center
+}
+.textLeft {
+  text-align: left
+}
+.van-doc-demo-block__title{
+  margin: 0;
+  padding: 32px 16px 16px;
+  color: rgba(69, 90, 100, 0.6);
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 16px;
+}
+
+
+.color-list{
+  .van-field__left-icon{margin-right:14px}
+  .van-cell::after{
+    display: none;
+  }
+}
+
+.myList{
+  padding:  10px;
+  .myItem{
+    margin-bottom: 10px;
+    background: white;
+    
+    position: relative;
+    &:last-child{
+      margin-bottom: 0;
+    }
+
+    .content{
+      padding: 10px;
+    }
+
+    .state{
+      padding: 2px 5px;
+      border-bottom-right-radius: 12px;
+      font-size: 14px;
+      color: white;
+    }
+  }
+} 
+
+$numberInputPading: 30px;
+.customerTags  .van-tag{margin: 0 10px 10px 0;}
+.customerForm {
+  .van-cell.van-field.myField{
+    &::after{
+      position: absolute;
+    box-sizing: border-box;
+    content: ' ';
+    pointer-events: none;
+    right: 0;
+    bottom: 0;
+    left: 15px;
+    right: 15px;
+    border-bottom: 0.02667rem solid #ebedf0;
+    -webkit-transform: scaleY(.5);
+    transform: scaleY(.5);
+    }
+    padding: 10px 15px !important;
+    
+    .van-field__control{
+      color: #000000;
+      font-size: 16px;
+    }
+    display: block;
+    padding-right: 0;
+    .van-cell__title{
+      font-size: 14px;
+      color: #7f7f7f;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      &.van-field__label{width: 100%;}
+    };
+    .van-field__value{
+      padding: 10px 10px 15px 0;
+    }
+  }
+  .customerUpload .van-uploader .van-uploader__preview {
+    display: none;
+  }
+  .flexRightWidth{
+    .van-cell__value.van-field__value{display: flex;overflow: auto;
+        .van-field__body{width: 100%;}
+    }
+    
+  }
+  .myNumberInput.vue-numeric-input{
+    width: 100%!important;
+    .btn-decrement,.btn-increment{
+     width: $numberInputPading;
+     top: 0;
+     bottom: 0;
+     background-color: white;
+     display: none;
+    }
+
+    .btn-decrement[disabled="disabled"],.btn-increment[disabled="disabled"]{
+      .btn-icon:after,.btn-icon:before{
+        background-color:#CCC
+      }
+    }
+   .btn-increment {
+      right: 0;
+     
+  }
+  .btn-decrement {
+    left: 0;
+}
+    .numeric-input{font-size: 18px;width: 100%;
+    line-height: 1.5;
+    background: none;
+    border: 0;
+    padding: 0;
+    border-right: 8px;
+    min-height:20px;box-sizing: border-box;}
+  }
+}
+
+.pointerEvents{
+  pointer-events:none
+}
+.relative{position: relative;}
+
+/* 通用弹窗样式 */
+.myAction{
+  @extend .flexCloumn;
+  .van-action-sheet__content{
+    @extend .flexMain;
+  }
+  .van-cell{
+    .van-cell__title{
+      flex: inherit;
+    }
+    .van-cell__value{
+      @extend .flexLeftContent;
+    }
+  }
+}
+
+.myCard{
+  padding: 12px;
+  background-color: #fff;
+  border-radius: 8px;
+  position: relative;
+
+  .myPreview{position: absolute;top: 0;right: 0;}
+}
+.myButtonList{
+  .van-tabbar--fixed{
+    height: 100px;
+  }
+  .flex1.flexContent{margin: 0 20px;}
+  .myButtonContent{
+    border: 2px solid #f7f7f7;
+    border-radius: 50px;
+    overflow: hidden;
+    width: 100%;
+    height: 50px;
+    @extend .flexBox;
+    .van-button{
+      @extend .flex1;
+      height: 100%;
+      background:none;
+      border: 0;
+      color: #1861f6;
+      position: relative;
+      &:after{
+        content: "";
+        position: absolute;
+        height: 1em;
+        background-color: #1861f6;
+        width: 1px;
+        top: 50%;
+        right: 0;
+        margin-top: -0.5em;
+      }
+
+      &::before{
+        display: none;
+      }
+
+      &:last-of-type{
+        &:after{
+          display:none;
+        }
+      }
+    }
+  }
+}
+.content{
+  background-color: #efefef;
+}
+.myCard:not(:last-child) {
+  margin-bottom: 12px;
+}
+.none{display: none!important;}
+
+
+.noUploader {
+  position: absolute!important;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 0;
+  opacity: 0;
+
+  .van-uploader__upload {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 3;
+  }
+}
+
+/* 全局样式 */
+.myGrid{
+  .myImg{
+    padding: 20px;
+    border:1px solid #eeeeee;
+    height: 80px;
+    border-radius: 5px;
+    img{width: 80px;}
+  }
+  color: #000000;
+  font-size: 15px;
+}
+.van-nav-bar,.van-tabs__wrap{
+&:after{
+  border-width: 0!important;
+}
+} 
+.van-nav-bar {
+  .van-nav-bar__title{font-size: 18px;color: #1b1b1b;}
+}
+
+.van-tabs__wrap{
+  .van-tab{
+    color: #000;
+    font-size: 14px;
+     &.van-tab--active{
+    color: #1861f6;font-size: 18px;
+  }
+  }
+  
+  .van-tabs__line{
+    background-color: #1861f6;
+  }
+}
+.myTabbar{
+  .van-tabbar-item{
+    color: #7e7e7e;
+  }  
+  .van-tabbar-item--active{
+    color: inherit;
+    .van-tabbar-item__text{
+      span{color: #1861f6;}
+    }
+  }
+}
+
+.draggableSwipe {
+  .van-swipe-cell__right {
+    display: -webkit-box;
+  }
+}
+
+.header {
+  width: 100%;
+  padding: 20px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column; 
+  .title {
+    color: #000;
+    font-weight: bold;
+    font-size: 18px;
+  }
+}
+
+.content {
+  width: 100%;
+  height: auto;
+  padding: 0 15px;
+  box-sizing: border-box;
+  background: #fff;
+  .button-wrap {
+    width: 100%;
+    height: auto;
+    margin-top: 15px;
+  }
+}
+
+.title-1-0{
+  background-color: $theme-color;
+  padding: 10px;
+  font-size: 18px;
+}
+// 1861f6
