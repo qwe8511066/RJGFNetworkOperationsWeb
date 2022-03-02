@@ -1,9 +1,16 @@
 <template>
-  <div>
+  <div class="height100">
+    <van-nav-bar
+      left-arrow
+      @click-left="back"
+      :title="this.$store.getters.user.applicationTitle"
+      :fixed="true"
+      :placeholder="true"
+    />
     <div class="content marginBottom30">
       <van-form ref="myForm" class="myForm" @submit="onSubmit">
-        <div>
-          <div class="title-1-1">基站名称</div>
+        <div class="marginBottom20">
+          <div class="title-1-1">基础信息</div>
           <van-field
             v-model="user.name"
             name="基站名称"
@@ -47,10 +54,10 @@
 
         <div class="button-wrap">
           <van-button
-            size="large"
             native-type="submit"
             :loading="loading"
             type="info"
+            plain hairline
             >提交</van-button
           >
         </div>
@@ -59,11 +66,13 @@
   </div>
 </template>
 <script>
-//故障上报
+//隐患上报
 import service from "@/utils/request";
 import lodash from "lodash";
+import publicJs from '@/extends/public'
 export default {
   name: "HiddenTroubleReport",
+  mixins: [publicJs],
   data() {
     return {
       user: {

@@ -1,10 +1,17 @@
 <template>
-  <div>
+  <div class="height100">
+    <van-nav-bar
+      left-arrow
+      @click-left="back"
+      :title="this.$store.getters.user.applicationTitle"
+      :fixed="true"
+      :placeholder="true"
+    />
     <div class="content marginBottom30">
       <van-form ref="myForm" class="myForm" @submit="onSubmit">
-        <div>
+        <div class="marginBottom20">
           <div class="title-1-1">基础信息</div>
-          <div class="paddingLeft16 paddingRight16">
+          <div class="padding16 bgfff">
             <p>处理人/部门：</p>
             <p>处理人电话：</p>
             <p>派单时间：</p>
@@ -37,7 +44,7 @@
 
         <div class="button-wrap">
           <van-button
-            size="large"
+            plain hairline
             native-type="submit"
             :loading="loading"
             type="info"
@@ -52,8 +59,10 @@
 //故障工单处理
 import service from "@/utils/request";
 import lodash from "lodash";
+import publicJs from '@/extends/public'
 export default {
   name: "FaultRepairOrderDispose",
+  mixins: [publicJs],
   data() {
     return {
       user: {

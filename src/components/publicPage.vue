@@ -145,7 +145,10 @@ export default {
       this.loading = true
       service
         .post(this.listServe, this.page)
-        .then((data) => {
+        .then((responseData) => {  
+          //debugger
+          const {data} = responseData
+
           this.page.page++
           this.loading = false
           this.queryLoading = false

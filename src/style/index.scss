@@ -118,6 +118,11 @@ $colorList: (
   background: #f1f1f1;
 }
 
+.height-full{
+  height: 100vh;
+  background: #f1f1f1;
+}
+
 .flexBox {
   display: -webkit-box;
 }
@@ -379,9 +384,7 @@ $numberInputPading: 30px;
     }
   }
 }
-.content {
-  background-color: #efefef;
-}
+
 .myCard:not(:last-child) {
   margin-bottom: 12px;
 }
@@ -440,14 +443,10 @@ $numberInputPading: 30px;
     color: #000;
     font-size: 14px;
     &.van-tab--active {
-      color: #1861f6;
       font-size: 18px;
     }
   }
 
-  .van-tabs__line {
-    background-color: #1861f6;
-  }
 }
 .myTabbar {
   .van-tabbar-item {
@@ -488,12 +487,21 @@ $numberInputPading: 30px;
   height: auto;
   padding: 0 15px;
   box-sizing: border-box;
-  background: #fff;
+  background-color: #efefef;
   .button-wrap {
     width: 100%;
+    text-align: center;
     height: auto;
     margin-top: 15px;
   }
+}
+
+.content-body {
+  width: 100%;
+  height: auto;
+  padding: 15px;
+  box-sizing: border-box;
+  background-color: #f1f1f1;
 }
 
 .title-1-0 {
@@ -506,6 +514,11 @@ $numberInputPading: 30px;
   padding: 10px 16px;
   font-size: 18px;
 }
+.title-1-2 {
+  padding: 10px 0;
+  font-size: 18px;
+  font-weight: 800;
+}
 
 .myForm {
   .van-cell {
@@ -516,11 +529,15 @@ $numberInputPading: 30px;
       padding: 15px;
       border: 1px #000 solid;
     }
+    .van-field__label{
+      display: flex;
+      align-items: center;
+    }
   }
 }
 .myUploader {
-  width: 100%;
-  padding: 50px 16px;
+  padding: 60px 16px 20px;
+  width: calc(100% - 16px);
   .van-uploader__wrapper {
     display: flex;
     flex-wrap: wrap;
@@ -535,6 +552,22 @@ $numberInputPading: 30px;
     .van-uploader__input-wrapper {
       position: absolute;
       top: 0;
+    }
+  }
+}
+
+.tabs-1-0{
+  .van-tabs__wrap{
+    width: 100%;
+    .van-tabs__nav{
+      display: flex;
+      margin:0;
+      .van-tab{
+        flex: 1;
+      }
+      .van-tabs__line{
+        width: 50%;
+      }
     }
   }
 }

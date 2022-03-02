@@ -1,11 +1,16 @@
 <template>
-  <div>
-    <div class="header">
-      <p class="title">用户信息维护</p>
-    </div>
-    <div class="content">
+  <div class="height100">
+    <van-nav-bar
+      left-arrow
+      @click-left="back"
+      :title="this.$store.getters.user.applicationTitle"
+      :fixed="true"
+      :placeholder="true"
+    />
+    <div class="content-body">
       <van-form ref="myForm" class="myForm" @submit="onSubmit">
         <div :class="[updateType === 0 ? 'pointerEvents' : '']">
+          <div class="marginBottom20">
           <div class="title-1-0">基础信息</div>
           <van-field
             v-model="user.name"
@@ -22,7 +27,8 @@
             placeholder="请输入手机号"
             :rules="[{ required: true, message: '请填写手机号' }]"
           />
-
+          </div>
+          <div class="marginBottom20">
           <div class="title-1-0">业务信息</div>
           <van-field
             v-model="user.professional"
@@ -55,6 +61,7 @@
             placeholder="网格类别"
             :rules="[{ required: true, message: '请填写网格类别' }]"
           />
+          </div>
         </div>
 
         <div class="button-wrap">
@@ -119,8 +126,10 @@
 import service from "@/utils/request";
 import lodash from "lodash";
 import { Toast } from "vant";
+import publicJs from '@/extends/public'
 export default {
   name: "InformationMaintenance",
+  mixins: [publicJs],
   data() {
     return {
       user: {
